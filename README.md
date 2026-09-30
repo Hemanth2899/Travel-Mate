@@ -119,7 +119,7 @@ Smooth transitions
 Mobile-friendly layouts
 ▶️ How to Run
 1. Clone the repository
-git clone https://github.com/YOUR-USERNAME/travelmate-ai.git
+git clone https://github.com/Hemanth2899/Travel-Mate
 2. Open the project
 
 Open:
