@@ -1,0 +1,2425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#071b23">
+
+<title>TravelMate AI — Discover Beyond</title>
+
+<style>
+:root{
+    --navy:#071b23;
+    --navy2:#0c2933;
+    --cream:#f8f4ec;
+    --gold:#c9a45c;
+    --gold2:#e4c982;
+    --red:#e34b4b;
+    --red2:#ff6b6b;
+    --white:#fff;
+    --text:#17252b;
+    --muted:#718087;
+    --border:#e7e2d8;
+    --shadow:0 20px 60px rgba(7,27,35,.13);
+    --radius:24px;
+    --transition:.35s cubic-bezier(.2,.8,.2,1);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    color:var(--text);
+    background:#fff;
+    overflow-x:hidden;
+}
+
+button,
+input,
+select{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+img{
+    width:100%;
+    display:block;
+}
+
+.container{
+    width:min(1180px,calc(100% - 32px));
+    margin:auto;
+}
+
+.serif{
+    font-family:Georgia,serif;
+}
+
+.gold{
+    color:var(--gold);
+}
+
+.red{
+    color:var(--red);
+}
+
+/* =========================
+   TOP BAR
+========================= */
+
+.topbar{
+    background:#171717;
+    color:#eee;
+    padding:10px 0;
+    font-size:12px;
+}
+
+.topbar-inner{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+}
+
+/* =========================
+   NAV
+========================= */
+
+.navbar{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:rgba(255,255,255,.93);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid #eee;
+}
+
+.nav-inner{
+    height:76px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    font-family:Georgia,serif;
+    font-size:28px;
+    font-weight:bold;
+}
+
+.logo-mark{
+    color:var(--gold);
+    font-style:italic;
+    font-size:36px;
+}
+
+.desktop-nav{
+    display:flex;
+    gap:28px;
+}
+
+.desktop-nav a{
+    position:relative;
+    padding:10px 0;
+    font-weight:700;
+    font-size:14px;
+}
+
+.desktop-nav a:after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:0;
+    height:3px;
+    background:var(--red);
+    border-radius:10px;
+    transition:.3s;
+}
+
+.desktop-nav a:hover,
+.desktop-nav a.active{
+    color:var(--red);
+}
+
+.desktop-nav a:hover:after,
+.desktop-nav a.active:after{
+    width:100%;
+}
+
+.nav-actions{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.nav-btn{
+    border:0;
+    padding:12px 18px;
+    border-radius:999px;
+    background:var(--gold);
+    color:#fff;
+    font-weight:800;
+    transition:var(--transition);
+}
+
+.nav-btn:hover{
+    transform:translateY(-3px);
+    background:var(--red);
+    box-shadow:0 12px 25px rgba(227,75,75,.25);
+}
+
+.icon-btn{
+    width:44px;
+    height:44px;
+    border:0;
+    border-radius:50%;
+    background:#f5f2eb;
+    transition:var(--transition);
+}
+
+.icon-btn:hover{
+    color:#fff;
+    background:var(--red);
+    transform:translateY(-3px);
+}
+
+.menu-btn{
+    display:none;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    min-height:700px;
+    position:relative;
+    overflow:hidden;
+    color:#fff;
+    background:#061e27;
+}
+
+.hero-image{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    opacity:.65;
+}
+
+.hero-overlay{
+    position:absolute;
+    inset:0;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(3,22,28,.92),
+            rgba(3,22,28,.45),
+            rgba(3,22,28,.25)
+        );
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+    padding:110px 0;
+}
+
+.hero-tag{
+    display:inline-flex;
+    padding:9px 15px;
+    border-radius:999px;
+    background:rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.25);
+    font-size:12px;
+    letter-spacing:1px;
+}
+
+.hero h1{
+    font-family:Georgia,serif;
+    font-size:clamp(52px,8vw,100px);
+    line-height:.92;
+    letter-spacing:-5px;
+    max-width:850px;
+    margin:25px 0;
+}
+
+.hero h1 em{
+    color:var(--gold2);
+    font-weight:normal;
+}
+
+.hero-copy{
+    max-width:620px;
+    color:rgba(255,255,255,.8);
+    line-height:1.8;
+}
+
+.hero-actions{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-top:30px;
+}
+
+.btn{
+    border:0;
+    border-radius:999px;
+    padding:14px 21px;
+    font-weight:800;
+    transition:var(--transition);
+}
+
+.btn-gold{
+    background:var(--gold);
+    color:#fff;
+}
+
+.btn-gold:hover{
+    background:var(--red);
+    transform:translateY(-4px);
+    box-shadow:0 15px 30px rgba(227,75,75,.3);
+}
+
+.btn-dark{
+    background:var(--navy);
+    color:#fff;
+}
+
+.btn-dark:hover{
+    background:var(--red);
+    transform:translateY(-4px);
+}
+
+.btn-outline{
+    color:#fff;
+    background:transparent;
+    border:1px solid rgba(255,255,255,.5);
+}
+
+.btn-outline:hover{
+    background:var(--red);
+    border-color:var(--red);
+}
+
+.hero-search{
+    margin-top:50px;
+    max-width:850px;
+    padding:9px;
+    display:flex;
+    gap:7px;
+    background:#fff;
+    border-radius:18px;
+    box-shadow:0 25px 70px rgba(0,0,0,.25);
+}
+
+.hero-search input{
+    flex:1;
+    border:0;
+    outline:0;
+    padding:15px;
+}
+
+.search-btn{
+    border:0;
+    border-radius:13px;
+    padding:0 22px;
+    background:var(--gold);
+    color:#fff;
+    font-weight:800;
+}
+
+.search-btn:hover{
+    background:var(--red);
+}
+
+/* =========================
+   SECTION
+========================= */
+
+.section{
+    padding:85px 0;
+}
+
+.section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    margin-bottom:35px;
+    gap:20px;
+}
+
+.section-label{
+    color:var(--gold);
+    text-transform:uppercase;
+    font-size:11px;
+    font-weight:900;
+    letter-spacing:3px;
+    margin-bottom:12px;
+}
+
+.section-title{
+    font-family:Georgia,serif;
+    font-size:clamp(35px,6vw,60px);
+    line-height:1;
+    letter-spacing:-2px;
+}
+
+.section-subtitle{
+    color:var(--muted);
+    max-width:620px;
+    line-height:1.8;
+    margin-top:18px;
+}
+
+/* =========================
+   CATEGORY
+========================= */
+
+.category-strip{
+    margin-top:-40px;
+    position:relative;
+    z-index:10;
+}
+
+.category-scroll{
+    display:flex;
+    gap:12px;
+    overflow:auto;
+    padding-bottom:10px;
+}
+
+.category{
+    flex:none;
+    min-width:110px;
+    padding:17px 13px;
+    border:1px solid var(--border);
+    border-radius:18px;
+    background:#fff;
+    text-align:center;
+    box-shadow:var(--shadow);
+    transition:var(--transition);
+}
+
+.category:hover,
+.category.active{
+    color:#fff;
+    background:var(--navy);
+    border-color:var(--red);
+    transform:translateY(-8px);
+}
+
+.category-icon{
+    width:44px;
+    height:44px;
+    display:grid;
+    place-items:center;
+    margin:auto auto 8px;
+    border-radius:50%;
+    background:#f5efe2;
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.card-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+.travel-card{
+    position:relative;
+    min-height:430px;
+    overflow:hidden;
+    border-radius:25px;
+    color:#fff;
+    cursor:pointer;
+    isolation:isolate;
+    transition:var(--transition);
+    background:#12343d;
+}
+
+.travel-card:hover{
+    transform:translateY(-12px) scale(1.015);
+    box-shadow:
+        0 25px 60px rgba(0,0,0,.2),
+        0 0 0 2px var(--red);
+}
+
+.travel-card img{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:-2;
+    transition:transform .8s ease;
+}
+
+.travel-card:hover img{
+    transform:scale(1.1);
+}
+
+.travel-card:after{
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:-1;
+    background:linear-gradient(
+        to top,
+        rgba(0,0,0,.85),
+        transparent 65%
+    );
+}
+
+.card-content{
+    position:absolute;
+    left:22px;
+    right:22px;
+    bottom:22px;
+}
+
+.card-location{
+    font-size:12px;
+    opacity:.8;
+}
+
+.card-content h3{
+    font-family:Georgia,serif;
+    font-size:31px;
+    margin:7px 0;
+}
+
+.card-meta{
+    display:flex;
+    justify-content:space-between;
+    font-size:13px;
+}
+
+.rating{
+    color:#ffd77e;
+}
+
+.card-badge{
+    position:absolute;
+    top:18px;
+    left:18px;
+    padding:8px 12px;
+    border-radius:999px;
+    background:rgba(0,0,0,.3);
+    backdrop-filter:blur(8px);
+    font-size:11px;
+}
+
+.card-heart{
+    position:absolute;
+    top:15px;
+    right:15px;
+    width:43px;
+    height:43px;
+    border:0;
+    border-radius:50%;
+    background:rgba(0,0,0,.3);
+    color:#fff;
+    font-size:19px;
+    transition:.3s;
+}
+
+.card-heart:hover,
+.card-heart.saved{
+    background:var(--red);
+    transform:scale(1.12);
+}
+
+/* =========================
+   SERVICE CARDS
+========================= */
+
+.service-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+}
+
+.service-card{
+    padding:25px;
+    border-radius:22px;
+    border:1px solid var(--border);
+    background:#fff;
+    cursor:pointer;
+    transition:var(--transition);
+}
+
+.service-card:hover{
+    transform:translateY(-9px);
+    border-color:var(--red);
+    box-shadow:var(--shadow);
+}
+
+.service-icon{
+    font-size:34px;
+    margin-bottom:20px;
+}
+
+.service-card h3{
+    font-family:Georgia,serif;
+    font-size:22px;
+    margin-bottom:8px;
+}
+
+.service-card p{
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.6;
+}
+
+/* =========================
+   AI
+========================= */
+
+.ai-section{
+    background:var(--navy);
+    color:#fff;
+}
+
+.ai-layout{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+    align-items:center;
+}
+
+.ai-section .section-subtitle{
+    color:rgba(255,255,255,.65);
+}
+
+.ai-orb{
+    width:340px;
+    height:340px;
+    margin:auto;
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    font-size:80px;
+    background:
+        radial-gradient(circle at 35% 30%,#e4c982,transparent 10%),
+        radial-gradient(circle at 60% 60%,#248d93,transparent 35%),
+        linear-gradient(145deg,#0c5d69,#102b35);
+    box-shadow:0 0 100px rgba(70,190,190,.25);
+    animation:orbFloat 5s ease-in-out infinite;
+}
+
+@keyframes orbFloat{
+    50%{
+        transform:translateY(-15px) rotate(2deg);
+    }
+}
+
+/* =========================
+   PAGE VIEW
+========================= */
+
+.page-view{
+    position:fixed;
+    inset:0;
+    z-index:3000;
+    background:#fff;
+    overflow:auto;
+    transform:translateX(100%);
+    transition:.5s cubic-bezier(.77,0,.18,1);
+}
+
+.page-view.open{
+    transform:translateX(0);
+}
+
+.page-hero{
+    height:420px;
+    position:relative;
+    color:#fff;
+}
+
+.page-hero img{
+    position:absolute;
+    inset:0;
+    height:100%;
+    object-fit:cover;
+}
+
+.page-hero:after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        to top,
+        rgba(4,20,25,.9),
+        transparent 65%
+    );
+}
+
+.page-top{
+    position:absolute;
+    top:20px;
+    left:20px;
+    right:20px;
+    z-index:5;
+    display:flex;
+    justify-content:space-between;
+}
+
+.page-back{
+    width:46px;
+    height:46px;
+    border:0;
+    border-radius:50%;
+    background:rgba(0,0,0,.35);
+    color:#fff;
+    font-size:20px;
+    backdrop-filter:blur(10px);
+    transition:.3s;
+}
+
+.page-back:hover{
+    background:var(--red);
+    transform:scale(1.1);
+}
+
+.page-heading{
+    position:absolute;
+    left:30px;
+    bottom:30px;
+    z-index:4;
+}
+
+.page-heading h1{
+    font-family:Georgia,serif;
+    font-size:clamp(45px,8vw,80px);
+}
+
+.page-body{
+    padding:45px 0 100px;
+}
+
+.page-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:30px;
+}
+
+.page-copy{
+    line-height:1.9;
+    color:var(--muted);
+}
+
+.page-side{
+    background:var(--navy);
+    color:#fff;
+    padding:25px;
+    border-radius:24px;
+    height:max-content;
+}
+
+.page-side h3{
+    font-family:Georgia,serif;
+    font-size:27px;
+    margin-bottom:20px;
+}
+
+.side-row{
+    padding:14px 0;
+    border-bottom:1px solid rgba(255,255,255,.1);
+    display:flex;
+    justify-content:space-between;
+}
+
+/* =========================
+   AI CHAT
+========================= */
+
+.ai-float{
+    position:fixed;
+    right:25px;
+    bottom:25px;
+    z-index:1800;
+    width:62px;
+    height:62px;
+    border:0;
+    border-radius:50%;
+    color:#fff;
+    font-size:25px;
+    background:linear-gradient(145deg,var(--gold),var(--red));
+    box-shadow:0 15px 35px rgba(0,0,0,.25);
+    transition:.3s;
+}
+
+.ai-float:hover{
+    transform:scale(1.12) rotate(5deg);
+}
+
+.ai-chat{
+    position:fixed;
+    right:25px;
+    bottom:100px;
+    z-index:4000;
+    width:min(410px,calc(100% - 30px));
+    height:620px;
+    background:#fff;
+    border-radius:26px;
+    overflow:hidden;
+    box-shadow:0 30px 100px rgba(0,0,0,.3);
+    display:flex;
+    flex-direction:column;
+    transform:translateY(120px) scale(.9);
+    opacity:0;
+    pointer-events:none;
+    transition:.4s;
+}
+
+.ai-chat.open{
+    opacity:1;
+    transform:translateY(0) scale(1);
+    pointer-events:auto;
+}
+
+.ai-head{
+    padding:17px;
+    background:var(--navy);
+    color:#fff;
+    display:flex;
+    justify-content:space-between;
+}
+
+.ai-close{
+    border:0;
+    background:none;
+    color:#fff;
+    font-size:24px;
+}
+
+.ai-messages{
+    flex:1;
+    padding:18px;
+    overflow:auto;
+    background:#faf9f5;
+}
+
+.message{
+    max-width:86%;
+    padding:12px 15px;
+    border-radius:16px;
+    margin-bottom:12px;
+    font-size:13px;
+    line-height:1.6;
+}
+
+.message.ai{
+    background:#fff;
+    border:1px solid var(--border);
+}
+
+.message.user{
+    margin-left:auto;
+    color:#fff;
+    background:var(--navy);
+}
+
+.ai-input{
+    padding:12px;
+    border-top:1px solid var(--border);
+    display:flex;
+    gap:7px;
+}
+
+.ai-input input{
+    flex:1;
+    border:1px solid var(--border);
+    border-radius:13px;
+    padding:12px;
+    outline:0;
+}
+
+.ai-input button{
+    width:45px;
+    border:0;
+    border-radius:13px;
+    background:var(--red);
+    color:#fff;
+}
+
+/* =========================
+   TOAST
+========================= */
+
+.toast{
+    position:fixed;
+    left:50%;
+    top:100px;
+    z-index:9999;
+    transform:translate(-50%,-20px);
+    opacity:0;
+    pointer-events:none;
+    background:var(--navy);
+    color:#fff;
+    padding:13px 20px;
+    border-radius:999px;
+    transition:.35s;
+}
+
+.toast.show{
+    opacity:1;
+    transform:translate(-50%,0);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    padding:70px 0 100px;
+    background:#06171e;
+    color:#fff;
+}
+
+.footer-grid{
+    display:grid;
+    grid-template-columns:2fr repeat(3,1fr);
+    gap:35px;
+}
+
+footer a{
+    display:block;
+    color:rgba(255,255,255,.55);
+    margin:9px 0;
+    font-size:13px;
+}
+
+footer a:hover{
+    color:var(--red2);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:900px){
+
+    .desktop-nav{
+        display:none;
+    }
+
+    .menu-btn{
+        display:block;
+    }
+
+    .card-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .service-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .ai-layout,
+    .page-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:600px){
+
+    .topbar{
+        display:none;
+    }
+
+    .hero{
+        min-height:650px;
+    }
+
+    .hero-content{
+        padding-top:80px;
+    }
+
+    .hero-search{
+        flex-wrap:wrap;
+    }
+
+    .hero-search input{
+        width:100%;
+    }
+
+    .search-btn{
+        width:100%;
+        height:48px;
+    }
+
+    .card-grid,
+    .service-grid,
+    .footer-grid{
+        grid-template-columns:1fr;
+    }
+
+    .section-head{
+        display:block;
+    }
+
+    .section-head .btn{
+        margin-top:20px;
+    }
+
+    .ai-orb{
+        width:240px;
+        height:240px;
+    }
+}
+
+/* =========================
+   CLICK ANIMATION
+========================= */
+
+.click-effect{
+    position:fixed;
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:var(--red);
+    pointer-events:none;
+    z-index:10000;
+    animation:clickRipple .6s ease-out forwards;
+}
+
+@keyframes clickRipple{
+    from{
+        opacity:.8;
+        transform:scale(1);
+    }
+    to{
+        opacity:0;
+        transform:scale(18);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="toast" id="toast"></div>
+
+<!-- TOP BAR -->
+
+<div class="topbar">
+    <div class="container topbar-inner">
+        <span>✦ AI Travel Assistant · Available 24/7</span>
+        <span>Discover beautiful places around you</span>
+    </div>
+</div>
+
+<!-- NAVIGATION -->
+
+<header class="navbar">
+
+<div class="container nav-inner">
+
+<a href="#" class="logo" onclick="goHome()">
+    <span class="logo-mark">T</span>
+    <span>TravelMate</span>
+</a>
+
+<nav class="desktop-nav">
+
+<a href="#home" class="active">Home</a>
+<a href="#destinations">Explore</a>
+<a href="#services">Discover</a>
+<a href="#ai">AI Assistant</a>
+
+</nav>
+
+<div class="nav-actions">
+
+<button class="nav-btn" onclick="detectLocation()">
+    📍 My Location
+</button>
+
+<button class="icon-btn" onclick="showToast('Favorites are saved locally ❤️')">
+    ♡
+</button>
+
+<button class="icon-btn menu-btn" onclick="showToast('Mobile menu')">
+    ☰
+</button>
+
+</div>
+
+</div>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+<img
+class="hero-image"
+src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2000&q=90"
+alt="Tropical beach">
+
+<div class="hero-overlay"></div>
+
+<div class="container hero-content">
+
+<div class="hero-tag">
+    ✦ YOUR AI-POWERED TRAVEL COMPANION
+</div>
+
+<h1>
+    Discover the world
+    <em>around you.</em>
+</h1>
+
+<p class="hero-copy">
+    Discover real destinations, hotels, resorts, restaurants,
+    beaches, temples, parks and unforgettable experiences.
+</p>
+
+<div class="hero-actions">
+
+<button class="btn btn-gold"
+onclick="openCategoryPage('destinations')">
+    Explore destinations →
+</button>
+
+<button class="btn btn-outline"
+onclick="openAI()">
+    ✦ Talk to TravelMate
+</button>
+
+</div>
+
+<div class="hero-search">
+
+<input
+id="searchInput"
+placeholder="Search beaches, hotels, Goa, Bali, restaurants..."
+onkeydown="if(event.key==='Enter')searchPlaces()">
+
+<button class="search-btn" onclick="searchPlaces()">
+    Search
+</button>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- CATEGORIES -->
+
+<section class="category-strip">
+
+<div class="container">
+
+<div class="category-scroll">
+
+<button class="category active"
+onclick="openCategoryPage('destinations')">
+<div class="category-icon">✦</div>
+<small>Destinations</small>
+</button>
+
+<button class="category"
+onclick="openCategoryPage('hotels')">
+<div class="category-icon">🏨</div>
+<small>Hotels</small>
+</button>
+
+<button class="category"
+onclick="openCategoryPage('residencies')">
+<div class="category-icon">🏠</div>
+<small>Residencies</small>
+</button>
+
+<button class="category"
+onclick="openCategoryPage('restaurants')">
+<div class="category-icon">🍴</div>
+<small>Restaurants</small>
+</button>
+
+<button class="category"
+onclick="openCategoryPage('beaches')">
+<div class="category-icon">🏖</div>
+<small>Beaches</small>
+</button>
+
+<button class="category"
+onclick="openCategoryPage('temples')">
+<div class="category-icon">🛕</div>
+<small>Temples</small>
+</button>
+
+<button class="category"
+onclick="openCategoryPage('parks')">
+<div class="category-icon">🌳</div>
+<small>Parks</small>
+</button>
+
+<button class="category"
+onclick="openCategoryPage('activities')">
+<div class="category-icon">🤿</div>
+<small>Activities</small>
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- DESTINATIONS -->
+
+<section class="section" id="destinations">
+
+<div class="container">
+
+<div class="section-head">
+
+<div>
+
+<div class="section-label">
+    Real places
+</div>
+
+<h2 class="section-title">
+    Places worth
+    <span class="gold">remembering.</span>
+</h2>
+
+<p class="section-subtitle">
+    Explore famous cities and tourism destinations around the world.
+</p>
+
+</div>
+
+<button
+class="btn btn-dark"
+onclick="openCategoryPage('destinations')">
+View all →
+</button>
+
+</div>
+
+
+<div class="card-grid">
+
+<!-- MALDIVES -->
+
+<article
+class="travel-card"
+onclick="openPlace('Maldives','destination')">
+
+<img
+src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=1200&q=90"
+alt="Maldives">
+
+<span class="card-badge">
+TRENDING
+</span>
+
+<button
+class="card-heart"
+onclick="event.stopPropagation();favorite(this)">
+♡
+</button>
+
+<div class="card-content">
+
+<div class="card-location">
+📍 Indian Ocean
+</div>
+
+<h3>Maldives</h3>
+
+<div class="card-meta">
+<span class="rating">★ 4.9</span>
+<span>Island escape</span>
+</div>
+
+</div>
+
+</article>
+
+
+<!-- GOA -->
+
+<article
+class="travel-card"
+onclick="openPlace('Goa','destination')">
+
+<img
+src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=1200&q=90"
+alt="Goa beach">
+
+<span class="card-badge">
+INDIA
+</span>
+
+<button
+class="card-heart"
+onclick="event.stopPropagation();favorite(this)">
+♡
+</button>
+
+<div class="card-content">
+
+<div class="card-location">
+📍 Goa, India
+</div>
+
+<h3>Goa</h3>
+
+<div class="card-meta">
+<span class="rating">★ 4.7</span>
+<span>Beach · Culture</span>
+</div>
+
+</div>
+
+</article>
+
+
+<!-- BALI -->
+
+<article
+class="travel-card"
+onclick="openPlace('Bali','destination')">
+
+<img
+src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1200&q=90"
+alt="Bali temple">
+
+<span class="card-badge">
+POPULAR
+</span>
+
+<button
+class="card-heart"
+onclick="event.stopPropagation();favorite(this)">
+♡
+</button>
+
+<div class="card-content">
+
+<div class="card-location">
+📍 Indonesia
+</div>
+
+<h3>Bali</h3>
+
+<div class="card-meta">
+<span class="rating">★ 4.8</span>
+<span>Temples · Nature</span>
+</div>
+
+</div>
+
+</article>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SERVICES -->
+
+<section class="section" style="background:#faf8f3">
+
+<div class="container">
+
+<div class="section-head">
+
+<div>
+
+<div class="section-label">
+Everything in one place
+</div>
+
+<h2 class="section-title">
+Discover your
+<span class="gold">next experience.</span>
+</h2>
+
+</div>
+
+</div>
+
+
+<div class="service-grid">
+
+<div class="service-card"
+onclick="openCategoryPage('hotels')">
+
+<div class="service-icon">🏨</div>
+
+<h3>Hotels</h3>
+
+<p>
+Luxury hotels, boutique stays and resorts.
+</p>
+
+</div>
+
+
+<div class="service-card"
+onclick="openCategoryPage('residencies')">
+
+<div class="service-icon">🏠</div>
+
+<h3>Residencies</h3>
+
+<p>
+Apartments, villas and vacation residences.
+</p>
+
+</div>
+
+
+<div class="service-card"
+onclick="openCategoryPage('restaurants')">
+
+<div class="service-icon">🍴</div>
+
+<h3>Restaurants</h3>
+
+<p>
+Discover local food and highly-rated restaurants.
+</p>
+
+</div>
+
+
+<div class="service-card"
+onclick="openCategoryPage('beaches')">
+
+<div class="service-icon">🏖</div>
+
+<h3>Beaches</h3>
+
+<p>
+Find beautiful beaches and hidden coastal spots.
+</p>
+
+</div>
+
+
+<div class="service-card"
+onclick="openCategoryPage('temples')">
+
+<div class="service-icon">🛕</div>
+
+<h3>Temples</h3>
+
+<p>
+Explore historical and spiritual landmarks.
+</p>
+
+</div>
+
+
+<div class="service-card"
+onclick="openCategoryPage('parks')">
+
+<div class="service-icon">🌳</div>
+
+<h3>Parks</h3>
+
+<p>
+Nature parks, gardens and family attractions.
+</p>
+
+</div>
+
+
+<div class="service-card"
+onclick="openCategoryPage('activities')">
+
+<div class="service-icon">🤿</div>
+
+<h3>Activities</h3>
+
+<p>
+Diving, trekking, adventure and local experiences.
+</p>
+
+</div>
+
+
+<div class="service-card"
+onclick="openAI()">
+
+<div class="service-icon">🤖</div>
+
+<h3>AI Planner</h3>
+
+<p>
+Let TravelMate create your complete itinerary.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- AI -->
+
+<section class="section ai-section" id="ai">
+
+<div class="container ai-layout">
+
+<div>
+
+<div class="section-label">
+Your personal travel companion
+</div>
+
+<h2 class="section-title">
+Just ask.
+<br>
+<span class="gold">TravelMate knows.</span>
+</h2>
+
+<p class="section-subtitle">
+
+Ask things like:
+
+<br><br>
+
+"Find hotels in Goa."
+
+<br>
+
+"Show me beaches near me."
+
+<br>
+
+"Plan a 3 day Bali trip."
+
+<br>
+
+"Find a luxury resort."
+
+</p>
+
+<button
+class="btn btn-gold"
+style="margin-top:25px"
+onclick="openAI()">
+Open TravelMate AI
+</button>
+
+</div>
+
+<div class="ai-orb">
+✦
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<div class="container footer-grid">
+
+<div>
+
+<div class="logo">
+<span class="logo-mark">T</span>
+<span style="color:#fff">TravelMate</span>
+</div>
+
+<p style="color:#8d9da1;margin-top:15px;line-height:1.8">
+AI-powered travel discovery for destinations,
+hotels, restaurants and experiences.
+</p>
+
+</div>
+
+<div>
+
+<strong>Explore</strong>
+
+<a href="#destinations">Destinations</a>
+<a href="#" onclick="openCategoryPage('hotels')">Hotels</a>
+<a href="#" onclick="openCategoryPage('beaches')">Beaches</a>
+
+</div>
+
+<div>
+
+<strong>Discover</strong>
+
+<a href="#" onclick="openCategoryPage('restaurants')">Restaurants</a>
+<a href="#" onclick="openCategoryPage('temples')">Temples</a>
+<a href="#" onclick="openCategoryPage('activities')">Activities</a>
+
+</div>
+
+<div>
+
+<strong>AI</strong>
+
+<a href="#" onclick="openAI()">TravelMate AI</a>
+<a href="#" onclick="detectLocation()">My Location</a>
+
+</div>
+
+</div>
+
+</footer>
+
+
+<!-- DYNAMIC PAGE -->
+
+<section class="page-view" id="pageView">
+
+<div class="page-hero">
+
+<img id="pageImage" src="" alt="Travel">
+
+<div class="page-top">
+
+<button class="page-back"
+onclick="closePage()">
+←
+</button>
+
+<button class="page-back"
+onclick="favorite(this)">
+♡
+</button>
+
+</div>
+
+<div class="page-heading">
+
+<div class="section-label">
+TRAVELMATE DISCOVERY
+</div>
+
+<h1 id="pageTitle">
+Hotels
+</h1>
+
+</div>
+
+</div>
+
+
+<div class="container page-body">
+
+<div class="page-grid">
+
+<div>
+
+<h2
+id="pageSubtitle"
+style="font-family:Georgia,serif;font-size:38px;margin-bottom:18px">
+Find beautiful places.
+</h2>
+
+<p
+id="pageDescription"
+class="page-copy">
+Discover carefully selected places, experiences and
+tourism attractions.
+</p>
+
+<div
+class="card-grid"
+id="dynamicCards"
+style="margin-top:30px">
+</div>
+
+</div>
+
+
+<aside class="page-side">
+
+<h3>
+TravelMate Guide
+</h3>
+
+<div class="side-row">
+<span>AI recommendations</span>
+<strong>✓</strong>
+</div>
+
+<div class="side-row">
+<span>Location aware</span>
+<strong>✓</strong>
+</div>
+
+<div class="side-row">
+<span>Real places</span>
+<strong>✓</strong>
+</div>
+
+<button
+class="btn btn-gold"
+style="width:100%;margin-top:20px"
+onclick="openAI()">
+✦ Ask TravelMate
+</button>
+
+</aside>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- AI CHAT -->
+
+<button
+class="ai-float"
+onclick="openAI()">
+✦
+</button>
+
+
+<div class="ai-chat" id="aiChat">
+
+<div class="ai-head">
+
+<div>
+<strong>TravelMate AI</strong>
+<div style="font-size:11px;color:#8ce1bb">
+● Claude AI travel assistant
+</div>
+</div>
+
+<button class="ai-close"
+onclick="closeAI()">
+×
+</button>
+
+</div>
+
+
+<div class="ai-messages" id="aiMessages">
+
+<div class="message ai">
+👋 Hello! I'm TravelMate AI.
+<br><br>
+Ask me about destinations, hotels,
+restaurants, beaches or trip planning.
+</div>
+
+</div>
+
+
+<div class="ai-input">
+
+<input
+id="aiInput"
+placeholder="Ask TravelMate..."
+onkeydown="if(event.key==='Enter')sendAI()">
+
+<button onclick="sendAI()">
+➤
+</button>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   DATA
+========================================================= */
+
+const pages = {
+
+destinations:{
+title:"Destinations",
+subtitle:"Explore remarkable places around the world.",
+description:"Discover famous cities, islands and tourism destinations.",
+image:"https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1800&q=90"
+},
+
+hotels:{
+title:"Hotels",
+subtitle:"Stay somewhere unforgettable.",
+description:"Discover luxury hotels, boutique properties, beach resorts and city hotels.",
+image:"https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=1800&q=90"
+},
+
+residencies:{
+title:"Residencies",
+subtitle:"Feel at home wherever you travel.",
+description:"Discover villas, apartments, vacation homes and premium residences.",
+image:"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1800&q=90"
+},
+
+restaurants:{
+title:"Restaurants",
+subtitle:"Taste the destination.",
+description:"Find local cuisine, fine dining, cafés and unforgettable food experiences.",
+image:"https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1800&q=90"
+},
+
+beaches:{
+title:"Beaches",
+subtitle:"Find your perfect coastline.",
+description:"Explore tropical beaches, quiet coves, surfing beaches and sunset locations.",
+image:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1800&q=90"
+},
+
+temples:{
+title:"Temples",
+subtitle:"Walk through history.",
+description:"Discover ancient temples, spiritual sites and architectural landmarks.",
+image:"https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1800&q=90"
+},
+
+parks:{
+title:"Parks",
+subtitle:"Reconnect with nature.",
+description:"Explore national parks, botanical gardens and beautiful green spaces.",
+image:"https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1800&q=90"
+},
+
+activities:{
+title:"Activities",
+subtitle:"Make your trip unforgettable.",
+description:"Find diving, trekking, hiking, adventure sports and local experiences.",
+image:"https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1800&q=90"
+}
+
+};
+
+
+/* =========================================================
+   SAMPLE REAL PLACES
+========================================================= */
+
+const cards = {
+
+hotels:[
+["The Leela Goa","Goa, India","https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1000&q=85"],
+["Alila Villas Uluwatu","Bali, Indonesia","https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1000&q=85"],
+["Maldives Resort","Maldives","https://images.unsplash.com/photo-1573843981267-be1999ff37cd?auto=format&fit=crop&w=1000&q=85"]
+],
+
+residencies:[
+["Luxury Beach Villa","Maldives","https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1000&q=85"],
+["Tropical Villa","Bali","https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=85"],
+["Heritage Residence","Goa","https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1000&q=85"]
+],
+
+restaurants:[
+["Beachside Restaurant","Goa, India","https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1000&q=85"],
+["Fine Dining","Bali, Indonesia","https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=1000&q=85"],
+["Island Seafood","Maldives","https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1000&q=85"]
+],
+
+beaches:[
+["Baga Beach","Goa, India","https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=1000&q=85"],
+["Maldives Lagoon","Maldives","https://images.unsplash.com/photo-1505881502353-a1986add3762?auto=format&fit=crop&w=1000&q=85"],
+["Nusa Beach","Bali","https://images.unsplash.com/photo-1539367628448-4bc5c9d171c8?auto=format&fit=crop&w=1000&q=85"]
+],
+
+temples:[
+["Uluwatu Temple","Bali","https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1000&q=85"],
+["Tropical Temple","Bali","https://images.unsplash.com/photo-1555400038-9e6f8c2b0f9d?auto=format&fit=crop&w=1000&q=85"],
+["Heritage Temple","India","https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1000&q=85"]
+],
+
+parks:[
+["Tropical National Park","Bali","https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1000&q=85"],
+["Nature Reserve","India","https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1000&q=85"],
+["Island Garden","Maldives","https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=1000&q=85"]
+],
+
+activities:[
+["Scuba Diving","Maldives","https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1000&q=85"],
+["Mountain Trek","Bali","https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=1000&q=85"],
+["Surfing","Goa","https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=1000&q=85"]
+],
+
+destinations:[
+["Maldives","Indian Ocean","https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=1000&q=85"],
+["Goa","India","https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=1000&q=85"],
+["Bali","Indonesia","https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1000&q=85"]
+]
+
+};
+
+
+/* =========================================================
+   PAGE NAVIGATION
+========================================================= */
+
+function openCategoryPage(type){
+
+    const page = pages[type];
+
+    if(!page) return;
+
+    document.getElementById("pageTitle").textContent =
+        page.title;
+
+    document.getElementById("pageSubtitle").textContent =
+        page.subtitle;
+
+    document.getElementById("pageDescription").textContent =
+        page.description;
+
+    document.getElementById("pageImage").src =
+        page.image;
+
+    renderCards(type);
+
+    document
+        .getElementById("pageView")
+        .classList.add("open");
+
+    document.body.style.overflow="hidden";
+}
+
+
+function closePage(){
+
+    document
+        .getElementById("pageView")
+        .classList.remove("open");
+
+    document.body.style.overflow="";
+}
+
+
+function goHome(){
+
+    closePage();
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+}
+
+
+/* =========================================================
+   RENDER CATEGORY
+========================================================= */
+
+function renderCards(type){
+
+    const container =
+        document.getElementById("dynamicCards");
+
+    container.innerHTML="";
+
+    const list =
+        cards[type] || [];
+
+    list.forEach(item=>{
+
+        const card =
+            document.createElement("article");
+
+        card.className="travel-card";
+
+        card.style.minHeight="330px";
+
+        card.innerHTML=`
+
+            <img
+            src="${item[2]}"
+            alt="${item[0]}"
+            loading="lazy">
+
+            <button
+            class="card-heart"
+            onclick="event.stopPropagation();favorite(this)">
+            ♡
+            </button>
+
+            <div class="card-content">
+
+                <div class="card-location">
+                    📍 ${item[1]}
+                </div>
+
+                <h3>${item[0]}</h3>
+
+                <div class="card-meta">
+                    <span class="rating">
+                        ★ 4.8
+                    </span>
+
+                    <span>
+                        View details →
+                    </span>
+                </div>
+
+            </div>
+        `;
+
+        card.onclick=()=>{
+            openPlace(item[0],type);
+        };
+
+        container.appendChild(card);
+
+    });
+}
+
+
+/* =========================================================
+   INDIVIDUAL PLACE
+========================================================= */
+
+function openPlace(name,type){
+
+    const list =
+        cards[type] || [];
+
+    const item =
+        list.find(x=>x[0]===name);
+
+    if(!item){
+
+        openCategoryPage(type);
+        return;
+
+    }
+
+    document.getElementById("pageTitle").textContent =
+        name;
+
+    document.getElementById("pageSubtitle").textContent =
+        `${name} — TravelMate recommendation`;
+
+    document.getElementById("pageDescription").textContent =
+        `Explore ${name}, discover nearby attractions, restaurants,
+        activities and accommodation options with TravelMate AI.`;
+
+    document.getElementById("pageImage").src =
+        item[2];
+
+    document.getElementById("dynamicCards").innerHTML="";
+
+    const info =
+        document.createElement("div");
+
+    info.style.padding="20px";
+    info.innerHTML=`
+
+        <div style="
+            padding:25px;
+            background:#f8f4ec;
+            border-radius:22px;
+        ">
+
+            <h3 style="
+                font-family:Georgia,serif;
+                font-size:30px;
+                margin-bottom:12px;
+            ">
+                ${name}
+            </h3>
+
+            <p style="
+                color:#718087;
+                line-height:1.8;
+            ">
+                📍 ${item[1]}<br><br>
+                TravelMate can help you discover nearby hotels,
+                residences, restaurants, beaches, temples,
+                parks and activities.
+            </p>
+
+            <button
+            class="btn btn-gold"
+            style="margin-top:20px"
+            onclick="openAI()">
+                ✦ Ask TravelMate about ${name}
+            </button>
+
+        </div>
+    `;
+
+    document
+        .getElementById("dynamicCards")
+        .appendChild(info);
+
+    document
+        .getElementById("pageView")
+        .classList.add("open");
+
+    document.body.style.overflow="hidden";
+}
+
+
+/* =========================================================
+   FAVORITES
+========================================================= */
+
+function favorite(button){
+
+    button.classList.toggle("saved");
+
+    button.textContent =
+        button.classList.contains("saved")
+        ? "♥"
+        : "♡";
+
+    showToast(
+        button.classList.contains("saved")
+        ? "Saved to favorites ❤️"
+        : "Removed from favorites"
+    );
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+function searchPlaces(){
+
+    const input =
+        document.getElementById("searchInput");
+
+    const q =
+        input.value.trim().toLowerCase();
+
+    if(!q){
+
+        showToast("Enter a destination or experience");
+
+        return;
+    }
+
+    const categories = [
+        "hotels",
+        "residencies",
+        "restaurants",
+        "beaches",
+        "temples",
+        "parks",
+        "activities"
+    ];
+
+    const category =
+        categories.find(x=>q.includes(x.slice(0,-1)) || q.includes(x));
+
+    if(category){
+
+        openCategoryPage(category);
+        return;
+    }
+
+    if(q.includes("maldives")){
+
+        openPlace("Maldives","destinations");
+        return;
+
+    }
+
+    if(q.includes("goa")){
+
+        openPlace("Goa","destinations");
+        return;
+
+    }
+
+    if(q.includes("bali")){
+
+        openPlace("Bali","destinations");
+        return;
+
+    }
+
+    openAI();
+
+    setTimeout(()=>{
+
+        document.getElementById("aiInput").value =
+            input.value;
+
+        sendAI();
+
+    },300);
+}
+
+
+/* =========================================================
+   LOCATION
+========================================================= */
+
+function detectLocation(){
+
+    if(!navigator.geolocation){
+
+        showToast("Geolocation is not supported");
+
+        return;
+    }
+
+    showToast("Requesting your location...");
+
+    navigator.geolocation.getCurrentPosition(
+
+        position=>{
+
+            const lat =
+                position.coords.latitude.toFixed(4);
+
+            const lng =
+                position.coords.longitude.toFixed(4);
+
+            showToast(
+                `Location detected: ${lat}, ${lng}`
+            );
+
+        },
+
+        ()=>{
+            showToast(
+                "Location permission was unavailable"
+            );
+        },
+
+        {
+            enableHighAccuracy:true,
+            timeout:10000
+        }
+    );
+}
+
+
+/* =========================================================
+   AI CHAT
+========================================================= */
+
+function openAI(){
+
+    document
+        .getElementById("aiChat")
+        .classList.add("open");
+
+}
+
+
+function closeAI(){
+
+    document
+        .getElementById("aiChat")
+        .classList.remove("open");
+
+}
+
+
+function addMessage(text,type){
+
+    const container =
+        document.getElementById("aiMessages");
+
+    const message =
+        document.createElement("div");
+
+    message.className =
+        `message ${type}`;
+
+    message.textContent=text;
+
+    container.appendChild(message);
+
+    container.scrollTop =
+        container.scrollHeight;
+}
+
+
+/* =========================================================
+   CLAUDE API
+========================================================= */
+
+async function sendAI(){
+
+    const input =
+        document.getElementById("aiInput");
+
+    const text =
+        input.value.trim();
+
+    if(!text) return;
+
+    addMessage(text,"user");
+
+    input.value="";
+
+    const loading =
+        document.createElement("div");
+
+    loading.className="message ai";
+
+    loading.textContent=
+        "TravelMate is thinking...";
+
+    document
+        .getElementById("aiMessages")
+        .appendChild(loading);
+
+    try{
+
+        const response =
+            await fetch("/api/claude",{
+
+                method:"POST",
+
+                headers:{
+                    "Content-Type":"application/json"
+                },
+
+                body:JSON.stringify({
+                    message:text
+                })
+
+            });
+
+        if(!response.ok){
+
+            throw new Error("Claude API request failed");
+
+        }
+
+        const data =
+            await response.json();
+
+        loading.remove();
+
+        addMessage(
+            data.reply ||
+            "I couldn't generate a response.",
+            "ai"
+        );
+
+    }catch(error){
+
+        loading.remove();
+
+        addMessage(
+            "I'm unable to connect to the AI service right now. Please check your backend Claude API configuration.",
+            "ai"
+        );
+
+        console.error(error);
+    }
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+let toastTimer;
+
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.textContent=message;
+
+    toast.classList.add("show");
+
+    clearTimeout(toastTimer);
+
+    toastTimer =
+        setTimeout(()=>{
+            toast.classList.remove("show");
+        },2500);
+}
+
+
+/* =========================================================
+   CLICK RIPPLE
+========================================================= */
+
+document.addEventListener("click",event=>{
+
+    const effect =
+        document.createElement("div");
+
+    effect.className="click-effect";
+
+    effect.style.left =
+        `${event.clientX-5}px`;
+
+    effect.style.top =
+        `${event.clientY-5}px`;
+
+    document.body.appendChild(effect);
+
+    setTimeout(()=>{
+        effect.remove();
+    },600);
+});
+
+
+/* =========================================================
+   ESCAPE
+========================================================= */
+
+document.addEventListener("keydown",event=>{
+
+    if(event.key==="Escape"){
+
+        closeAI();
+        closePage();
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>
